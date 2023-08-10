@@ -1,4 +1,5 @@
 #   Your code goes here.
+import category
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -12,10 +13,29 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('budget_me')
 
-category = SHEET.worksheet('Category')
+category_data = SHEET.worksheet('Category').get_all_values()
+categories = category.get_categories(category_data)
+	
+print(categories)
 
-data = category.get_all_values()
-print(data)
+expences = SHEET.worksheet('Expences')
+
+expense_data = expences.get_all_values()
+
+def expences(expense_data):
+  expences = []
+  for select_expence in expense_data:
+    print(select_expence)
+
+expences(expense_data)
+
+
+	
+
+
+
+
+
 
 
 
