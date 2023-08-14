@@ -9,5 +9,5 @@ class Expence:
     return f'{self.category} {self.amount} {self.currency} {self.date}'
 
 def expense_data(data):
-  categories = {}
-  for select_category in data:
+  expenses = {}
+  for select_expense in data:
