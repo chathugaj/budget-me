@@ -148,7 +148,6 @@ def main():
     elif input_option == "4":
         print("======================================")
         expence_category = input("Enter your expence category:")
-        # expence_date = input("Enter your date:")
         date_object = datetime.now().strftime("%d/%m/%Y")
         expence_amount = input("Enter your amount:")
         expence_currency = input("Enter your currency:")
