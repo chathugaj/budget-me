@@ -34,7 +34,7 @@ def add_category(name, option, category_list):
     try:
         if name is None or category_list.count(name) > 0:
             raise ValueError("Duplicate category")
-        category_data = [name, option]
+        category_data = [name.upper(), option]
         update_worksheet(category_data, "Category")
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
