@@ -4,6 +4,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 from datetime import datetime
+import calendar
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -87,7 +88,7 @@ def read_category_data():
   """
   Read category data from the worksheet
   """
-  #print('reading category data')
+  print('reading category data\n')
   read_data = read_worksheet('Category')
   category_names = []
   for data in read_data:
@@ -100,38 +101,42 @@ def read_expence_data():
   """
   Read expence data from the worksheet
   """
-  #print('reading expence data')
+  print('reading expence data\n')
   read_data_expence = read_worksheet('Expences')
   return read_data_expence
 
+def get_monthy_summery(expence_list):
+  expence_summery = {}
+  today = datetime.today()
+  for line_expence in expence_list:
+    try:
+      if not line_expence[3] == "date":
+        expense_date = datetime.strptime(line_expence[3], '%d/%m/%Y')
+        if expense_date.year == today.year and expense_date.month == today.month:
+          dictionary_value = expence_summery.get(line_expence[0])
+          if (dictionary_value is not None):
+            expence_summery[line_expence[0]] = dictionary_value + int(line_expence[1])
+          else:
+            expence_summery[line_expence[0]] = int(line_expence[1])
 
-def get_sales_data():
-  """
-  Get sales figures input from the user
-  """
-  while True:
-    print("Please enter sales data from the last market.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10,20,30,40,50,60")
+    except ValueError as e:
+      print(f"Could not parse data, {e}")
 
-    data_str = input("Enter your data here: ")
+  expence_summery['Total'] = sum(expence_summery.values())
 
-    sales_data = data_str.split(",")
+  days_this_month = calendar.monthrange(today.year, today.month) [1]
+  expence_summery['Avg. Per Day'] = sum(expence_summery.values()) / days_this_month
 
-    if validate_data(sales_data):
-      print("Data is valid!")
-      break
-    
-  return sales_data
-#read_category_data()
-#read_expence_data()
+  return expence_summery
+
 
 def main():
   print('What would you like to do?')
-  print("1 list category")
-  print("2 list expences")
+  print("1 List category")
+  print("2 List expences")
   print("3 Add category")
   print("4 Add expence")
+  print("5 Get summary")
   input_option = input("Enter your option here: ")
   if input_option == '1':
     read_category_data()
@@ -144,7 +149,6 @@ def main():
     category_list = read_category_data()
     category_option = len(category_list) + 1
     add_category(name,option,category_list)
-
   if input_option == '4':
     expence_category = input("Enter your expence category:")
     #expence_date = input("Enter your date:")
@@ -154,12 +158,18 @@ def main():
     category_list = read_category_data()
 
     add_expence(expence_category, expence_amount, expence_currency, date_object, category_list)
+  if input_option == '5':
+    print("Retrieving summary of expences\n")
+    summary = get_monthy_summery(read_expence_data())
+    for k, v in summary.items():
+        print("{:<15} {:<15}".format(k, v))
 
   
-# main()
+main()
 
 # add_expence('Health', '123', 'sekddd', datetime.now().strftime("%d/%m/%Y"), ['name', 'Groceries', 'Transport', 'Health', 'Housing', 'Health'])
-add_category('Education', 8, ['name', 'Groceries', 'Transport', 'Health', 'Housing', 'Health'])
+# add_category('Education', 8, ['name', 'Groceries', 'Transport', 'Health', 'Housing', 'Health'])
+#pprint(get_monthy_summery(read_expence_data()))
 
 
 
