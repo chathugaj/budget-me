@@ -32,7 +32,7 @@ def add_category(name, option, category_list):
     validate the data and add in the category worksheet
     """
     try:
-        if name is None or category_list.count(name) > 0:
+        if name is None or category_list.count(name.upper()) > 0:
             raise ValueError("Duplicate category")
         category_data = [name.upper(), option]
         update_worksheet(category_data, "Category")
@@ -46,14 +46,14 @@ def add_expence(category, amount, currency, date, category_list):
     """
 
     try:
-        if category is None or category_list.count(category) == 0:
+        if category is None or category_list.count(category.upper()) == 0:
             raise ValueError("Please provide a valid category")
         elif not amount.isnumeric():
             raise ValueError(f"Please provide a valid amount")
         elif len(currency) > 3:
             raise ValueError(f"Please provide a valid three letter currency")
 
-        data = [category, amount, currency, date]
+        data = [category.upper(), amount, currency.upper(), date]
         update_worksheet(data, "Expences")
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
