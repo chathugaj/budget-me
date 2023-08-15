@@ -142,7 +142,10 @@ def main():
 
       if input_option == "1":
           print("======================================")
-          pprint(read_category_data())
+          li_cato = read_category_data()
+          for row in li_cato:
+              print("{:<15}".format(row))
+              
           print("======================================")
       elif input_option == "2":
           print("======================================")
