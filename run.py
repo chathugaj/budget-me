@@ -134,18 +134,18 @@ def main():
         print("======================================")
         pprint(read_category_data())
         print("======================================")
-    if input_option == "2":
+    elif input_option == "2":
         print("======================================")
         pprint(read_expence_data())
         print("======================================")
-    if input_option == "3":
+    elif input_option == "3":
         print("======================================")
         name = input("Enter your category here:")
         category_list = read_category_data()
         option = len(category_list) + 1
         add_category(name, option, category_list)
         print("======================================")
-    if input_option == "4":
+    elif input_option == "4":
         print("======================================")
         expence_category = input("Enter your expence category:")
         # expence_date = input("Enter your date:")
@@ -162,14 +162,15 @@ def main():
             category_list,
         )
         print("======================================")
-    if input_option == "5":
+    elif input_option == "5":
         print("======================================")
         print("Retrieving summary of expences\n")
         summary = get_monthy_summery(read_expence_data())
         for k, v in summary.items():
             print("{:<15} {:<15}".format(k, v))
-            
-        print("======================================")
 
+        print("======================================")
+    else:
+      print("Please try again")
 
 main()
