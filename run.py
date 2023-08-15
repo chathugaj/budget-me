@@ -3,6 +3,7 @@ import category
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -25,6 +26,37 @@ def update_worksheet(data, worksheet):
   worksheet_to_update.append_row(data)
   print(f"{worksheet} worksheet updated successfully.\n")
 
+
+def add_category(name, option, category_list):
+  """
+  validate the data and add in the category worksheet
+  """
+  try:
+    if name is None or category_list.count(name) > 0:
+      raise ValueError("Duplicate category")
+    category_data = [name, option]
+    update_worksheet(category_data,'Category')  
+  except ValueError as e:
+    print(f"Invalid data: {e}, please try again.\n")     
+
+
+def add_expence(category, amount, currency, date, category_list):
+  """
+  Validate the data and add in the expences worksheet
+  """
+  
+  try:
+    if category is None or category_list.count(category) == 0:
+      raise ValueError("Please provide a valid category")
+    elif not amount.isnumeric():
+      raise ValueError(f"Please provide a valid amount")
+    elif len(currency) > 3:
+      raise ValueError(f"Please provide a valid three letter currency")
+    
+    data = [category, amount, currency, date]
+    update_worksheet(data,'Expences')
+  except ValueError as e:
+    print(f"Invalid data: {e}, please try again.\n") 
 
 def read_worksheet(worksheet):
   """
@@ -55,27 +87,22 @@ def read_category_data():
   """
   Read category data from the worksheet
   """
-  print('reading category data')
+  #print('reading category data')
   read_data = read_worksheet('Category')
-  pprint(read_data)
+  category_names = []
+  for data in read_data:
+    category_names.append(data[0])
+      
+  return category_names
 
 
 def read_expence_data():
   """
   Read expence data from the worksheet
   """
-  print('reading expence data')
+  #print('reading expence data')
   read_data_expence = read_worksheet('Expences')
-  pprint( read_data_expence)
-
-	
-
-
-
-
-
-
-
+  return read_data_expence
 
 
 def get_sales_data():
@@ -96,8 +123,45 @@ def get_sales_data():
       break
     
   return sales_data
-read_category_data()
-read_expence_data()
+#read_category_data()
+#read_expence_data()
+
+def main():
+  print('What would you like to do?')
+  print("1 list category")
+  print("2 list expences")
+  print("3 Add category")
+  print("4 Add expence")
+  input_option = input("Enter your option here: ")
+  if input_option == '1':
+    read_category_data()
+    pprint(read_category_data())
+  if input_option == '2':
+    read_expence_data()
+    pprint(read_expence_data())
+  if input_option == '3':
+    add_category = input("Enter your category here:")
+    category_list = read_category_data()
+    category_option = len(category_list) + 1
+    add_category(name,option,category_list)
+
+  if input_option == '4':
+    expence_category = input("Enter your expence category:")
+    #expence_date = input("Enter your date:")
+    date_object = datetime.now().strftime("%d/%m/%Y")
+    expence_amount = input("Enter your amount:")
+    expence_currency = input("Enter your currency:")
+    category_list = read_category_data()
+
+    add_expence(expence_category, expence_amount, expence_currency, date_object, category_list)
+
+  
+# main()
+
+# add_expence('Health', '123', 'sekddd', datetime.now().strftime("%d/%m/%Y"), ['name', 'Groceries', 'Transport', 'Health', 'Housing', 'Health'])
+add_category('Education', 8, ['name', 'Groceries', 'Transport', 'Health', 'Housing', 'Health'])
+
+
 
 
 
