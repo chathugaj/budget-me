@@ -1,5 +1,4 @@
 #   Your code goes here.
-import category
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
@@ -119,16 +118,23 @@ def get_monthy_summery(expence_list):
     return expence_summery
 
 
-def main():
-    print("======================================")
-    print("Welcome to BUDGET ME!!")
-    print("What would you like to do?")
+
+def list_options():
     print("1. List category")
     print("2. List expences")
     print("3. Add category")
     print("4. Add expence")
     print("5. Get summary")
     print("6. Exit")
+    print("7. List options")
+
+    
+
+def main():
+    print("======================================")
+    print("Welcome to BUDGET ME!!")
+    print("What would you like to do?")
+    list_options()
 
     while True:
       input_option = input("Enter your option here: ")
@@ -140,7 +146,10 @@ def main():
           print("======================================")
       elif input_option == "2":
           print("======================================")
-          pprint(read_expence_data())
+          li_exp = read_expence_data()
+          for row in li_exp:
+              print("{:<15} {:<15} {:<15} {:<15}".format(row[0],row[1],row[2],row[3]))
+         
           print("======================================")
       elif input_option == "3":
           print("======================================")
@@ -176,6 +185,9 @@ def main():
       elif input_option == "6":
           print("Exit")
           break
+      elif input_option == "7":
+          list_options()
+          
       else:
         print("Please try again")
 
