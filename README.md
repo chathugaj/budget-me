@@ -2,7 +2,9 @@
 
 Budget me is a python terminal app,which runs in the Code Institute mock terminal on Heroku users can add expences to different categories and summerize their expences.
 
-To do live link
+[live link] https://budget-me-6513f36b98ac.herokuapp.com/
+
+![live link](docs/live_screenshots..png)
 
 ## How to use
 
@@ -30,7 +32,7 @@ To do live link
   - TODO add image
 - List options
   - User is able to list the options again
-  - TODO
+  - TODO add image
 - Exit
   - Exits the application
 
@@ -90,3 +92,27 @@ Tested by running the application locally and executing different scenarios defi
 
 Validated the python code using [python linter](https://pep8ci.herokuapp.com/#)
 ![Validator screen](./docs/python_linter.png)
+
+## Deployment
+
+Application is deployed and available in Heroku.
+
+Add the two buildpacks below from the Settings tab in the listed order;
+
+- heroku/python
+- heroku/nodejs
+
+### Configuration
+
+- Create a Config Var called PORT. Set this to 8000
+- Create another Config Var called CREDS and paste the google credentials json structure
+- Connect your GitHub repository and deploy as normal.
+
+![Deployed screen](./docs/heroku_deployed.png)
+
+## Credits
+
+For this implementation python libraries provided by google is used to access Google APIs
+
+- gspread
+- google.oauth2
