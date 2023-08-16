@@ -89,6 +89,15 @@ def read_expence_data():
 
 
 def get_monthy_summery(expence_list):
+    """
+    Returns a summary for the current month as a dictionary.
+    ex: {
+      "EDUCATION": 3200
+      "TRANSPORT": 1000
+      "Total": 4200
+      "Avg. Per Day": 140
+    }
+    """
     expence_summery = {}
     today = datetime.today()
     for line_expence in expence_list:
@@ -137,7 +146,7 @@ def main():
     list_options()
 
     while True:
-      input_option = input("Enter your option here: ")
+      input_option = input("Enter your option here:\n ")
       print("======================================")
 
       if input_option == "1":
@@ -156,17 +165,17 @@ def main():
           print("======================================")
       elif input_option == "3":
           print("======================================")
-          name = input("Enter your category here:")
+          name = input("Enter your category here:\n")
           category_list = read_category_data()
           option = len(category_list) + 1
           add_category(name, option, category_list)
           print("======================================")
       elif input_option == "4":
           print("======================================")
-          expence_category = input("Enter your expence category:")
+          expence_category = input("Enter your expence category:\n")
           date_object = datetime.now().strftime("%d/%m/%Y")
-          expence_amount = input("Enter your amount:")
-          expence_currency = input("Enter your currency:")
+          expence_amount = input("Enter your amount:\n")
+          expence_currency = input("Enter your currency:\n")
           category_list = read_category_data()
 
           add_expence(
