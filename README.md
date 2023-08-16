@@ -25,6 +25,7 @@ Budget me is a python terminal app,which runs in the Code Institute mock termina
 - Add a new expense category
   - User is allowed create a new category that does not exist in the list already
 - List available expenses
+  ![list expences](docs/list_exp.png)
 - Add a new expense
   ![Add new expence](docs/add_new_expence.png)
   - User is prompted to enter required data
