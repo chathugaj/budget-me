@@ -1,6 +1,6 @@
 # Budeget Me
 
-Budget me is a python terminal app,which runs in the Code Institute mock terminal on Heroku users can add expences to different categories and summerize their expences.
+Budget me is a python terminal app,which runs in the Code Institute mock terminal on Heroku users can add expenses to different categories and summerize their expenses.
 
 [live link] https://budget-me-6513f36b98ac.herokuapp.com/
 
@@ -8,8 +8,8 @@ Budget me is a python terminal app,which runs in the Code Institute mock termina
 
 ## How to use
 
-- Budget Me is simple expense tracker that allows users to add, list and summerize expences. Additionally users can add expense categories.
-- In this version when the application is started user is given 5 options to select.
+- Budget Me is a simple expense tracker that allows users to add, list and summerize expenses. Additionally users can add expense categories.
+- In this version when the application is started user is given 7 options to select.
 - Based on user's selection program will retrieve data from Google sheets or prompt user for input so that user can add expenses or categories
 
 ## Features
@@ -18,7 +18,7 @@ Budget me is a python terminal app,which runs in the Code Institute mock termina
 
   - Show available options to the user
   - Prompt for user's input
-  - Validate the input allow, user to continue if user select a valid input
+  - Validate the input, allow user to continue if user select a valid input
     ![list options](docs/list_options.png)
 
 - List available expense cagegories ![list expence category](docs/expence_catogery.png)
