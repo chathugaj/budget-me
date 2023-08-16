@@ -32,7 +32,7 @@ def add_category(name, option, category_list):
     validate the data and add in the category worksheet
     """
     try:
-        if name is None or category_list.count(name.upper()) > 0:
+        if name is None or name == "" or category_list.count(name.upper()) > 0:
             raise ValueError("Duplicate category")
         category_data = [name.upper(), option]
         update_worksheet(category_data, "Category")
@@ -127,7 +127,6 @@ def get_monthy_summery(expence_list):
     return expence_summery
 
 
-
 def list_options():
     print("1. List category")
     print("2. List expences")
@@ -137,7 +136,6 @@ def list_options():
     print("6. Exit")
     print("7. List options")
 
-    
 
 def main():
     print("======================================")
@@ -146,61 +144,65 @@ def main():
     list_options()
 
     while True:
-      input_option = input("Enter your option here:\n ")
-      print("======================================")
+        input_option = input("Enter your option here:\n ")
+        print("======================================")
 
-      if input_option == "1":
-          print("======================================")
-          li_cato = read_category_data()
-          for row in li_cato:
-              print("{:<15}".format(row))
-              
-          print("======================================")
-      elif input_option == "2":
-          print("======================================")
-          li_exp = read_expence_data()
-          for row in li_exp:
-              print("{:<15} {:<15} {:<15} {:<15}".format(row[0],row[1],row[2],row[3]))
-         
-          print("======================================")
-      elif input_option == "3":
-          print("======================================")
-          name = input("Enter your category here:\n")
-          category_list = read_category_data()
-          option = len(category_list) + 1
-          add_category(name, option, category_list)
-          print("======================================")
-      elif input_option == "4":
-          print("======================================")
-          expence_category = input("Enter your expence category:\n")
-          date_object = datetime.now().strftime("%d/%m/%Y")
-          expence_amount = input("Enter your amount:\n")
-          expence_currency = input("Enter your currency:\n")
-          category_list = read_category_data()
+        if input_option == "1":
+            print("======================================")
+            li_cato = read_category_data()
+            for row in li_cato:
+                print("{:<15}".format(row))
 
-          add_expence(
-              expence_category,
-              expence_amount,
-              expence_currency,
-              date_object,
-              category_list,
-          )
-          print("======================================")
-      elif input_option == "5":
-          print("======================================")
-          print("Retrieving summary of expences\n")
-          summary = get_monthy_summery(read_expence_data())
-          for k, v in summary.items():
-              print("{:<15} {:<15}".format(k, v))
+            print("======================================")
+        elif input_option == "2":
+            print("======================================")
+            li_exp = read_expence_data()
+            for row in li_exp:
+                print(
+                    "{:<15} {:<15} {:<15} {:<15}"
+                    .format(row[0], row[1], row[2], row[3])
+                )
 
-          print("======================================")
-      elif input_option == "6":
-          print("Exit")
-          break
-      elif input_option == "7":
-          list_options()
-          
-      else:
-        print("Please try again")
+            print("======================================")
+        elif input_option == "3":
+            print("======================================")
+            name = input("Enter your category here:\n")
+            category_list = read_category_data()
+            option = len(category_list) + 1
+            add_category(name, option, category_list)
+            print("======================================")
+        elif input_option == "4":
+            print("======================================")
+            expence_category = input("Enter your expence category:\n")
+            date_object = datetime.now().strftime("%d/%m/%Y")
+            expence_amount = input("Enter your amount:\n")
+            expence_currency = input("Enter your currency:\n")
+            category_list = read_category_data()
+
+            add_expence(
+                expence_category,
+                expence_amount,
+                expence_currency,
+                date_object,
+                category_list,
+            )
+            print("======================================")
+        elif input_option == "5":
+            print("======================================")
+            print("Retrieving summary of expences\n")
+            summary = get_monthy_summery(read_expence_data())
+            for k, v in summary.items():
+                print("{:<15} {:<15}".format(k, v))
+
+            print("======================================")
+        elif input_option == "6":
+            print("Exit")
+            break
+        elif input_option == "7":
+            list_options()
+
+        else:
+            print("Please try again")
+
 
 main()
