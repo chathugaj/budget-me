@@ -85,3 +85,8 @@ Tested by running the application locally and executing different scenarios defi
 | 8   | View summary              | User select view summary option                                              | A summary of the expenses of the current month is shown         | PASS   |
 | 9   | Exit                      | User select exit as the option                                               | Application exits                                               | PASS   |
 | 10  | List options              | User select List options                                                     | Options list is shown again                                     | PASS   |
+
+### Validator testing
+
+Validated the python code using [python linter](https://pep8ci.herokuapp.com/#)
+![Validator screen](./docs/python_linter.png)
