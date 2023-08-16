@@ -15,26 +15,28 @@ Budget me is a python terminal app,which runs in the Code Institute mock termina
 ## Features
 
 - List available options
+
   - Show available options to the user
   - Prompt for user's input
-  - Validate the input allow user to continue if user
-  - TODO add image
-- List available expense cagegories
+  - Validate the input allow user to continue if user select a valid input
+
+  -![list options](docs/list_options.png)
+
+- List available expense cagegories -![list expence category](docs/expence_catogery.png)
 - Add a new expense category
   - User is allowed create a new category that does not exist in the list already
 - List available expenses
 - Add a new expense
+- ![Add new expence](docs/add_new_expence.png)
   - User is prompted to enter required data
   - Data is validated, and indicates users about the error and provide instructions if data is invalid
   - Expense google sheet is updated if the data is correct
-- View summary
+- View summary -![view summery](docs/summery.png)
+
   - User is able get a summary of expenses for the current month
-  - TODO add image
-- List options
-  - User is able to list the options again
-  - TODO add image
+
 - Exit
-  - Exits the application
+  - Exits the application -![exit](docs/exit.png)
 
 ## Future Features
 
