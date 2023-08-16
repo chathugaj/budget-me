@@ -18,8 +18,7 @@ SHEET = GSPREAD_CLIENT.open("budget_me")
 
 def update_worksheet(data, worksheet):
     """
-    Receives a list of integers to be inserted into a worksheet
-    Update the relevant worksheet with the data provided
+    Receives data to be inserted in to a worksheet
     """
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
@@ -159,8 +158,7 @@ def main():
             li_exp = read_expence_data()
             for row in li_exp:
                 print(
-                    "{:<15} {:<15} {:<15} {:<15}"
-                    .format(row[0], row[1], row[2], row[3])
+                    "{:<15} {:<15} {:<15} {:<15}".format(row[0], row[1], row[2], row[3])
                 )
 
             print("======================================")
