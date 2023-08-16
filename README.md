@@ -18,11 +18,10 @@ Budget me is a python terminal app,which runs in the Code Institute mock termina
 
   - Show available options to the user
   - Prompt for user's input
-  - Validate the input allow user to continue if user select a valid input
+  - Validate the input allow, user to continue if user select a valid input
+    ![list options](docs/list_options.png)
 
-  -![list options](docs/list_options.png)
-
-- List available expense cagegories -![list expence category](docs/expence_catogery.png)
+- List available expense cagegories ![list expence category](docs/expence_catogery.png)
 - Add a new expense category
   - User is allowed create a new category that does not exist in the list already
 - List available expenses
@@ -98,6 +97,9 @@ Validated the python code using [python linter](https://pep8ci.herokuapp.com/#)
 ## Deployment
 
 Application is deployed and available in Heroku.
+
+- Fork or clone this repository
+- Create a new Heroku App
 
 Add the two buildpacks below from the Settings tab in the listed order;
 
